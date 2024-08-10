@@ -64,7 +64,7 @@ const Register = () => {
             )}
           </div>
           <div className="w-full flex items-center border  my-8">
-            <button className="bg-orangeColor text-white w-full h-full px-4 py-3">
+            <button className="bg-orangeColor text-white w-full h-full px-4 py-3 hover:bg-transparent border border-transparent hover:border hover:border-orangeColor duration-500 hover:text-orangeColor">
             Register
             </button>
           </div>
