@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 import { usePathname } from 'next/navigation'
 import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/react";
 const Auth = ({
     children,
   }: Readonly<{
@@ -11,7 +12,7 @@ const Auth = ({
     const pathname = usePathname()
   return (
     <>
-      <div className="mx-auto my-6 max-w-[400px] ">
+      <div className="mx-auto my-6 max-w-[400px]   ">
         <div className="flex mx-auto justify-center">
           <Link
             href="/login"
@@ -38,7 +39,7 @@ const Auth = ({
        {children}
 
         <div className="w-full flex justify-center">
-          <button className="flex items-center justify-center w-full px-4 py-2 space-x-2 border border-gray-300 rounded bg-white">
+          <button onClick={()=> signIn('google')} className="flex items-center justify-center w-full px-4 py-2 space-x-2 border border-gray-300 rounded bg-white">
             <FcGoogle />
             <span className="text-gray-700 font-semibold">
               Sign in with Google

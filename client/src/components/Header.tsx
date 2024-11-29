@@ -9,8 +9,11 @@ import { useAppDispatch, useAppSelector } from "@/toolkit/hook";
 import { sidebarOpen } from "@/toolkit/slice/SidebarSlice";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useGetUserDataQuery } from "@/toolkit/api/userApi";
 
 function Navbar() {
+  const { isLoading, isError, isSuccess, data, error } =
+    useGetUserDataQuery(undefined);
   const pathname = usePathname();
 
   const { sidebarShow } = useAppSelector((state) => state.Sidebar);
@@ -25,7 +28,7 @@ function Navbar() {
   if (pathname.startsWith("/dashboard")) {
     return;
   }
-
+  console.log(data)
   return (
     <>
       <header className="w-full min-h-max bg-mainBlueColor flex items-center py-2 lg:py-0 sticky top-0 z-50 ">
@@ -68,12 +71,15 @@ function Navbar() {
                 <p className="hidden md:block">Cart</p>
               </div>
               <span className="h-[20px] w-[2px] bg-white md:hidden "></span>
-              <Link
+              {
+                !isLoading && !data && isError && <Link
                 href="/login"
                 className="md:border md:px-6 py-2 rounded cursor-pointer md:order-1 md:hover:bg-white md:hover:text-mainBlueColor duration-500 "
               >
                 Login
               </Link>
+              }
+             
             </div>
           </div>
         </div>
